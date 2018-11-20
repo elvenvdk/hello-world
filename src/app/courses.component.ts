@@ -3,15 +3,17 @@ import { CoursesService } from "./courses.service";
 
 @Component({
   selector: "courses",
+  // <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp()" />
   template: `
     <h2>{{ title }}</h2>
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
     <img [src]="imageUrl" />
     <ul>
       <li *ngFor="let course of courses">
       {{ course }}
       </li>
     </ul>
-    <table>
+    <table> 
       <tr>
         <td [attr.colspan]="colSpan"></td> 
       </tr>
@@ -28,11 +30,13 @@ export class CoursesComponent {
   courses;
   colSpan = 2;
   isActive=false;
+  email = "shithead@shit.com";
   onSave = ($event) => {
     $event.stopPropagation();
     console.log("button was clicked", $event);
   }
   onDivClicked = () => console.log("Div was clicked");
+  onKeyUp = () => console.log(this.email);
 
   constructor(service: CoursesService) {
     this.courses = service.getCourses();

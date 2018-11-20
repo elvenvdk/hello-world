@@ -8,3 +8,4 @@ export class AuthorsService {
     return ["author1", "author2", "author3"];
   }
 }
+ 
